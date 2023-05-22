@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Approval</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</head>
+<body background="{{ url_for('static', filename='img/bgImg.png') }}">
+    <div class="container">
+        <h1>Loan Application Approval Decision Maker App</h1>
+        <form id="myForm" action="/" method="post">
+            <h3>Informations</h3>
+            Select the options correctly and then hit the button!
+            <br><br>
+
+            <div class="box">
+                <label class="labelHead">Gender</label>
+                <label>
+                    <input type="radio" name="gender" value="Male"> Male
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Female"> Female
+                </label>
+
+                <br>
+
+                <label class="labelHead">Marital Status</label>
+                <label>
+                    <input type="radio" name="mstatus" value="Yes"> Yes
+                </label>
+
+                <label for="option2">
+                    <input type="radio" name="mstatus" value="No"> No
+                </label>
+
+                <br>
+
+                <label class="labelHead">No of Dependents</label>
+                <label>
+                    <input type="radio" name="ndep" value="0"> 0
+                </label>
+
+                <label>
+                    <input type="radio" name="ndep" value="1"> 1
+                </label>
+
+                <label>
+                    <input type="radio" name="ndep" value="2"> 2
+                </label>
+
+                <label>
+                    <input type="radio" name="ndep" value="3+"> 3+
+                </label>
+
+                <br>
+
+                <label class="labelHead">Property Area</label>
+                <label>
+                    <input type="radio" name="parea" value="Urban"> Urban
+                </label>
+
+                <label>
+                    <input type="radio" name="parea" value="Rural"> Rural
+                </label>
+
+                <label>
+                    <input type="radio" name="parea" value="Semi-Urban"> Semi-Urban
+                </label>
+
+                <br>
+
+                <label class="labelHead">Education</label>
+                <label>
+                    <input type="radio" name="edu" value="Graduate"> Graduate
+                </label>
+
+                <label>
+                    <input type="radio" name="edu" value="Not-Graduate"> Not-Graduate
+                </label>
+            </div>
+
+            <div class="box">
+                <label class="labelHead">Self Employed</label>
+                <label>
+                    <input type="radio" name="semp" value="Yes"> Yes
+                </label>
+
+                <label>
+                    <input type="radio" name="semp" value="No"> No
+                </label>
+
+                <br>
+
+                <label class="labelHead">Credit History</label>
+                <label>
+                    <input type="radio" name="chistory" value="Yes"> Yes
+                </label>
+
+                <label>
+                    <input type="radio" name="chistory" value="No"> No
+                </label>
+
+                <br>
+
+                <label class="labelHead">Income</label>
+                <input type="range" id="incomeslider" name="income" min="1" max="100000" step="1" value=50 oninput="updateSliderValue('incomeslider', 'incomesliderValue')">
+                <span class="slider-value" id="incomesliderValue">50</span>
+
+                <br>
+
+                <label class="labelHead">Co-applicant Income</label>
+                <input type="range" id="coincomeslider" name="coincome" min="1" max="100000" step="1" value=50 oninput="updateSliderValue('coincomeslider', 'coincomesliderValue')">
+                <span class="slider-value" id="coincomesliderValue">50</span>
+
+                <br>
+
+                <label class="labelHead">Loan Amount</label>
+                <input type="range" id="amountslider" name="amount" min="1" max="100000" step="1" value=50 oninput="updateSliderValue('amountslider', 'amountsliderValue')">
+                <span class="slider-value" id="amountsliderValue">50</span>
+
+                <br>
+
+                <label class="labelHead">Loan Amount Term</label>
+                <input type="range" id="termslider" name="term" min="1" max="100000" step="1" value=50 oninput="updateSliderValue('termslider', 'termsliderValue')">
+                <span class="slider-value" id="termsliderValue">50</span>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn" onclick="showDiv()">Submit</button>
+        </form>
+
+        <br><br>
+
+        <div class="result">
+            <h3>Result</h3>
+            {% if message == "No values inserted yet !" or message == "Not all the inputs are provided !" %}
+                <p>{{ message }}</p>
+            {% else %}
+                <p>{{ message }}</p>
+                <p>Confidence: {{ conf }}%</p>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+</html>
